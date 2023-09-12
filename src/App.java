@@ -29,7 +29,7 @@ public class App {
     }
     // leitura de arquivo
     public void leitura() {
-        Path path1 = Paths.get("caso0010.txt");
+        Path path1 = Paths.get("caso0001.txt");
         try (BufferedReader reader = Files.newBufferedReader(path1, Charset.defaultCharset())) {
             String linha = null;
             while ((linha = reader.readLine()) != null) {
@@ -47,7 +47,9 @@ public class App {
         leitura();
         
         lista.executar(dicionario);
-        System.out.print("LEITURA DA LISTA: ");
+
+        System.out.print("Resposta da cadeia: ");
+
         lista.printForward();
        
     }	
