@@ -45,21 +45,21 @@ public class DoubleLinkedList {
 
     public void printForward() {
         Node current = this.head;
-       // ("Doubly Linked List (Forward): ");
+       // System.out.print("Doubly Linked List (Forward): ");
         while (current != null) {
             System.out.print(current.data + " ");
             current = current.next;
         }
-    
+        System.out.println();
     }
     
     
     public void printHead() {
-        
+        System.out.println(head.getData());
     }
 
     public void printTail() {
-        
+        System.out.println(tail.getData());
     }
 
   
@@ -127,7 +127,6 @@ public class DoubleLinkedList {
                 
                 
 
-                
             } else {
                 if (current.prev != null && !current.prev.data.equals(current.data)) {
                     current = current.prev;
@@ -138,7 +137,6 @@ public class DoubleLinkedList {
                 
             }
         }
-        
     }
     
     

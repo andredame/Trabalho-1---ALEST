@@ -29,7 +29,7 @@ public class App {
     }
     // leitura de arquivo
     public void leitura() {
-        Path path1 = Paths.get("caso2000.txt");
+        Path path1 = Paths.get("caso0010.txt");
         try (BufferedReader reader = Files.newBufferedReader(path1, Charset.defaultCharset())) {
             String linha = null;
             while ((linha = reader.readLine()) != null) {
