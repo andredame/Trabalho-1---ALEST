@@ -1,9 +1,13 @@
+import java.util.Hashtable;
+
+
 public class DoubleLinkedList {
 
     private Node head;
     private Node tail;
 
-    private class Node {
+    class Node {
+
         private String data;
         private Node prev;
         private Node next;
@@ -18,44 +22,154 @@ public class DoubleLinkedList {
         public String getData() {
             return data;
         }
+    }
 
-    
-}
     public DoubleLinkedList() {
         head = null;
         tail = null;
+        
     }
-    public void insertion(String val){
-        Node newNode = new Node(val);
-        if (this.head == null) {
-           this.head = newNode;
-           this.tail = newNode;
-        } else {
-          this.tail.next = newNode;
-          newNode.prev = this.tail;
-          this.tail = newNode;
-        }
-    }
+
+    public void insertion(String data)  {
+	Node temp = new Node(data);
+	if (tail == null) {
+		head = temp;
+		tail = temp;
+	}
+	else {
+		tail.next = temp;
+		temp.prev = tail;
+		tail = temp;
+	}
+}
+
     public void printForward() {
         Node current = this.head;
-        System.out.print("Doubly Linked List (Forward): ");
+       // System.out.print("Doubly Linked List (Forward): ");
         while (current != null) {
-            System.out.print(current.data + "");
+            System.out.print(current.data + " ");
             current = current.next;
         }
         System.out.println();
     }
     
-    public Node getHead() {
-        return head;
-    }
-    public Node getTail() {
-        return tail;
-    }
+    
     public void printHead() {
         System.out.println(head.getData());
     }
+
     public void printTail() {
         System.out.println(tail.getData());
     }
+
+  
+    public void executar(Hashtable<String, String> dicionario) {
+        Node current = this.head;
+        
+        while (current != null ) {
+            if(current.next == null){
+                if(current.prev != null  ){
+                    if(!current.prev.data.equals(current.data)){
+                        current = current.prev;
+                    }else{
+                        break;
+                    }
+                    
+                }
+            }
+            Node next = current.next;
+            String currentBase = current.data;
+            String nextBase = (next != null) ? next.data : null; // Verificação para next.data
+
+
+            String key = currentBase + nextBase;
+            
+            System.out.print("antes: ");
+            printForward();
+            System.out.println("key: "+key);
+            
+    
+            if (dicionario.containsKey(key)) {
+                String newValue = dicionario.get(key);
+                System.out.println("newValue:"+newValue);
+                insertion(newValue);
+                System.out.println("Current: "+current.getData() + " Next: "+next.getData());
+                if (current == head) {
+                    head = next.next;
+                    current = head; 
+                    if (current != null) {
+                        current.prev = null;
+                    }
+                    System.out.println("head: "+head.getData());
+                            
+                }else{
+                    // Se o nó atual não é a cabeça
+                    Node prevNode = current.prev;
+
+                    if (next.next != null) {
+                        // Atualize as conexões do nó anterior e próximo
+                        prevNode.next = next.next;
+                        next.next.prev = prevNode;
+                    } else {
+                        // Se next.next for nulo, o nó atual é a cauda
+                        prevNode.next = null;
+                        tail = prevNode;
+                    }
+
+                    // Atualize o nó atual para o próximo nó após a inserção
+                    current = prevNode.next;
+                }
+                
+                
+                System.out.print("DEPOIS: ");
+                printForward();  
+                System.out.println("current: "+current.getData());     
+                System.out.println("head: "+head.getData());     
+
+            } else {
+                if (current.prev != null && !current.prev.data.equals(current.data)) {
+                    current = current.prev;
+                    
+                } else {
+                    current = current.next;
+                }
+                
+            }
+        }
+    }
+    
+    
+
+    public void deleteNode(Node nodeToDelete) {
+        if (nodeToDelete == null || head == null) {
+            return; // Nada a ser feito se o nó for nulo ou a lista estiver vazia
+        }
+    
+        // Se o nó a ser excluído é a cabeça (head) da lista
+        if (nodeToDelete == head) {
+            head = nodeToDelete.next;
+            if (head != null) {
+                head.prev = null;
+            }
+            return;
+        }
+    
+        // Se o nó a ser excluído é a cauda (tail) da lista
+        if (nodeToDelete == tail) {
+            tail = nodeToDelete.prev;
+            if (tail != null) {
+                tail.next = null;
+            }
+            return;
+        }
+    
+        // O nó a ser excluído não é a cabeça nem a cauda
+        if (nodeToDelete.prev != null) {
+            nodeToDelete.prev.next = nodeToDelete.next;
+        }
+        if (nodeToDelete.next != null) {
+            nodeToDelete.next.prev = nodeToDelete.prev;
+        }
+    }
+
 }

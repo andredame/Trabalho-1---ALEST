@@ -1,6 +1,7 @@
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Hashtable;
 import java.nio.file.Files;
 import java.io.BufferedReader;
 
@@ -12,20 +13,23 @@ public class App {
 
 
     private DoubleLinkedList lista;
-    
-    public App() {
-        lista = new DoubleLinkedList();
-        leitura();
-        lista.printForward();
-        System.out.print("LEITURA DO HEAD: ");
-        lista.printHead();
-        System.out.print("LEITURA DO TAIL: ");
-        lista.printTail();
+    private Hashtable<String, String> dicionario;
 
+
+    public App() {
+        dicionario = new Hashtable<String, String>();
+        lista = new DoubleLinkedList();
+
+        dicionario.put("ND", "A");
+        dicionario.put("DN", "A");
+        dicionario.put("DA", "N");
+        dicionario.put("AD", "N");
+        dicionario.put("AN", "D");
+        dicionario.put("NA", "D");
     }
     // leitura de arquivo
     public void leitura() {
-        Path path1 = Paths.get("caso0100.txt");
+        Path path1 = Paths.get("caso0001.txt");
         try (BufferedReader reader = Files.newBufferedReader(path1, Charset.defaultCharset())) {
             String linha = null;
             while ((linha = reader.readLine()) != null) {
@@ -39,9 +43,16 @@ public class App {
             System.err.format(e.getMessage());
         }
     }
-    
+    public void executa() {
+        leitura();
+        System.out.print("LEITURA DO HEAD: ");
+        lista.printHead();
+        System.out.print("LEITURA DO TAIL: ");
+        lista.printTail();
 
-    public void criacao() {
-        
-    }
+        lista.executar(dicionario);
+        System.out.print("LEITURA DA LISTA: ");
+        lista.printForward();
+       
+    }	
 }
