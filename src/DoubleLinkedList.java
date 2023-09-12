@@ -45,21 +45,21 @@ public class DoubleLinkedList {
 
     public void printForward() {
         Node current = this.head;
-       // System.out.print("Doubly Linked List (Forward): ");
+       // ("Doubly Linked List (Forward): ");
         while (current != null) {
             System.out.print(current.data + " ");
             current = current.next;
         }
-        System.out.println();
+    
     }
     
     
     public void printHead() {
-        System.out.println(head.getData());
+        
     }
 
     public void printTail() {
-        System.out.println(tail.getData());
+        
     }
 
   
@@ -71,10 +71,18 @@ public class DoubleLinkedList {
                 if(current.prev != null  ){
                     if(!current.prev.data.equals(current.data)){
                         current = current.prev;
+                        
                     }else{
                         break;
                     }
                     
+                }
+            }else{
+                if(current.prev != null){
+                    if(!current.prev.data.equals(current.data) ){
+                        current = current.prev;
+                        
+                    }
                 }
             }
             Node next = current.next;
@@ -84,23 +92,20 @@ public class DoubleLinkedList {
 
             String key = currentBase + nextBase;
             
-            System.out.print("antes: ");
-            printForward();
-            System.out.println("key: "+key);
             
     
             if (dicionario.containsKey(key)) {
                 String newValue = dicionario.get(key);
-                System.out.println("newValue:"+newValue);
+                
                 insertion(newValue);
-                System.out.println("Current: "+current.getData() + " Next: "+next.getData());
+                
                 if (current == head) {
                     head = next.next;
                     current = head; 
                     if (current != null) {
                         current.prev = null;
                     }
-                    System.out.println("head: "+head.getData());
+                    
                             
                 }else{
                     // Se o nó atual não é a cabeça
@@ -121,11 +126,8 @@ public class DoubleLinkedList {
                 }
                 
                 
-                System.out.print("DEPOIS: ");
-                printForward();  
-                System.out.println("current: "+current.getData());     
-                System.out.println("head: "+head.getData());     
 
+                
             } else {
                 if (current.prev != null && !current.prev.data.equals(current.data)) {
                     current = current.prev;
@@ -136,6 +138,7 @@ public class DoubleLinkedList {
                 
             }
         }
+        
     }
     
     
