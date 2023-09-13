@@ -13,6 +13,7 @@ public class App {
 
 
     private DoubleLinkedList lista;
+    private String resposta;
     private Hashtable<String, String> dicionario;
 
 
@@ -27,9 +28,11 @@ public class App {
         dicionario.put("AN", "D");
         dicionario.put("NA", "D");
     }
+
     // leitura de arquivo
-    public void leitura() {
-        Path path1 = Paths.get("caso0001.txt");
+    public void leitura(String pasta,String arquivo) {
+        lista = new DoubleLinkedList();
+        Path path1 = Paths.get(pasta, arquivo);
         try (BufferedReader reader = Files.newBufferedReader(path1, Charset.defaultCharset())) {
             String linha = null;
             while ((linha = reader.readLine()) != null) {
@@ -43,14 +46,62 @@ public class App {
             System.err.format(e.getMessage());
         }
     }
+    
+
+
     public void executa() {
-        leitura();
         
-        lista.executar(dicionario);
+        String pasta="testePrincipal";
+        long startTime, endTime, elapsedTime;
+        int[] casos = {1, 10, 20, 50, 100, 200, 500, 2000};
+        String casoPrefix = "caso";
+        String casoSuffix = ".txt";
 
-        System.out.print("Resposta da cadeia: ");
+        System.out.println("---------------------------------------------------------------------------");
 
-        lista.printForward();
-       
+        for (int caso : casos) {
+            String casoNumero = String.format("%04d", caso);
+            String casoArquivo = casoPrefix + casoNumero + casoSuffix;
+
+            leitura(pasta, casoArquivo);
+            startTime = System.currentTimeMillis();
+            lista.executar(dicionario);
+            endTime = System.currentTimeMillis();
+            elapsedTime = endTime - startTime;
+            System.out.print( casoArquivo + " Tempo gasto: " + elapsedTime + " ms ");
+            System.out.print("Resposta : ");
+            lista.printForward();
+        }
+
+        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("                              Teste 2: ");
+
+        pasta = "testeOutros";
+        int[] outrosCasos = {10, 100, 1000, 10000, 100000, 30000000};
+        String[] outrosCasoArquivos = {"caso10.txt", "caso100.txt", "caso1000.txt", "caso10k.txt", "caso100k.txt", "caso30000k.txt"};
+
+        for (int i = 0; i < outrosCasos.length; i++) {
+            int caso = outrosCasos[i];
+            String casoArquivo = outrosCasoArquivos[i];
+        
+            leitura(pasta, casoArquivo);
+            startTime = System.currentTimeMillis();
+            lista.executar(dicionario);
+            endTime = System.currentTimeMillis();
+            elapsedTime = endTime - startTime;
+            System.out.print(casoArquivo + " Tempo gasto: " + elapsedTime + " ms ");
+            System.out.print("Resposta : ");
+            lista.printForward();
+        }
+        System.out.println("---------------------------------------------------------------------------");
+
+
+
+
+
+
+
+
     }	
+
 }
