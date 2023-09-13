@@ -47,10 +47,10 @@ public class DoubleLinkedList {
         Node current = this.head;
        // System.out.print("Doubly Linked List (Forward): ");
         while (current != null) {
-            System.out.print(current.data + " ");
+            System.out.print(current.data + "");
             current = current.next;
         }
-        System.out.println();
+        
     }
     
     

@@ -69,8 +69,9 @@ public class App {
             endTime = System.currentTimeMillis();
             elapsedTime = endTime - startTime;
             System.out.print( casoArquivo + " Tempo gasto: " + elapsedTime + " ms ");
-            System.out.print("Resposta : ");
+            System.out.print("Resposta : [");
             lista.printForward();
+            System.out.println("]");
         }
 
         System.out.println("---------------------------------------------------------------------------");
@@ -90,8 +91,9 @@ public class App {
             endTime = System.currentTimeMillis();
             elapsedTime = endTime - startTime;
             System.out.print(casoArquivo + " Tempo gasto: " + elapsedTime + " ms ");
-            System.out.print("Resposta : ");
+            System.out.print("Resposta : [");
             lista.printForward();
+            System.out.println("]");
         }
         System.out.println("---------------------------------------------------------------------------");
 
