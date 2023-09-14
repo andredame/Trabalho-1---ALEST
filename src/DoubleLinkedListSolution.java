@@ -1,7 +1,7 @@
 import java.util.Hashtable;
 
 
-public class DoubleLinkedList {
+public class DoubleLinkedListSolution {
 
     private Node head;
     private Node tail;
@@ -24,7 +24,7 @@ public class DoubleLinkedList {
         }
     }
 
-    public DoubleLinkedList() {
+    public DoubleLinkedListSolution() {
         head = null;
         tail = null;
         
