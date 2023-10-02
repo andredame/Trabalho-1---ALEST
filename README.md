@@ -34,3 +34,10 @@ Ao final você deve apresentar um relatório descrevendo:
 - Os resultados dos casos de teste;
 
 - Conclusões.
+
+
+
+## Solução
+
+Foi Implementado em Java duas soluções, sendo uma delas utilizando uma Lista Encadeada Dupla, onde cada nodo representa um caractere da Cadeia. Enquanto a outra solução foi utilizado uma Pilha e uma Filha para realizar as mutações.
+Toda a implementação e a explicação pode ser visto no relatório presente no repositório.
