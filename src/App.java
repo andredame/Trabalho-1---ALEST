@@ -20,9 +20,7 @@ public class App {
 
 
     public App() {
-        fila= new QueueSolution();
-        
-
+        fila = new QueueSolution();
         dicionario = new Hashtable<String, String>();
         listaDoubleLinked = new DoubleLinkedListSolution();
         dicionario.put("ND", "A");
@@ -31,13 +29,8 @@ public class App {
         dicionario.put("AD", "N");
         dicionario.put("AN", "D");
         dicionario.put("NA", "D");
-
-        
-
-
     }
 
-    // leitura de arquivo
     public Queue<String> leituraSolution2(String pasta, String arquivo) {
         Queue<String> fila = new LinkedList<>();
         Path path = Paths.get(pasta, arquivo);
@@ -49,6 +42,7 @@ public class App {
                 String letra = String.valueOf(character).trim(); // Converte o caractere em string e remove espaços em branco
                 if (!letra.isEmpty()) { // Verifica se a string não está vazia
                     fila.offer(letra); // Adiciona a string à fila
+                    System.out.println(letra);
                 }
             }
         } catch (Exception e) {
@@ -57,7 +51,6 @@ public class App {
         return fila;
     }
 
-    // leitura de arquivo
     public void leituraSolution1(String pasta,String arquivo) {
         listaDoubleLinked = new DoubleLinkedListSolution();
         Path path1 = Paths.get(pasta, arquivo);
@@ -76,18 +69,6 @@ public class App {
     }
 
     public void executaFila(){
-
-        String pasta="testeOutros";
-        String casoArquivo = "caso30000k.txt";
-        Queue<String> dados= leituraSolution2(pasta, casoArquivo);
-        fila.executar(dados, dicionario);
-
-        System.out.println("---------------------------------------------------------------------------");
-
-
-
-        /* 
-        String pasta="testePrincipal";
         long startTime, endTime, elapsedTime;
         int[] casos = {1, 10, 20, 50, 100, 200, 500, 2000};
         String casoPrefix = "caso";
@@ -99,7 +80,7 @@ public class App {
             String casoNumero = String.format("%04d", caso);
             String casoArquivo = casoPrefix + casoNumero + casoSuffix;
 
-            Queue<String> dados= leituraSolution2(pasta, casoArquivo);
+            Queue<String> dados= leituraSolution2("src", casoArquivo);
             startTime = System.currentTimeMillis();
             fila.executar(dados, dicionario);
             endTime = System.currentTimeMillis();
@@ -109,37 +90,10 @@ public class App {
             listaDoubleLinked.printForward();
             System.out.println("]");
         }
-
-        System.out.println("---------------------------------------------------------------------------");
-        System.out.println("                              Teste 2: ");
-
-        pasta = "testeOutros";
-        int[] outrosCasos = {10, 100, 1000, 10000, 100000, 30000000};
-        String[] outrosCasoArquivos = {"caso10.txt", "caso100.txt", "caso1000.txt", "caso10k.txt", "caso100k.txt", "caso30000k.txt"};
-
-        for (int i = 0; i < outrosCasos.length; i++) {
-            int caso = outrosCasos[i];
-            String casoArquivo = outrosCasoArquivos[i];
-
-            Queue<String> dados= leituraSolution2(pasta, casoArquivo);
-            startTime = System.currentTimeMillis();
-            fila.executar(dados, dicionario);
-            endTime = System.currentTimeMillis();
-            elapsedTime = endTime - startTime;
-            System.out.print( casoArquivo + " Tempo gasto: " + elapsedTime + " ms ");
-            System.out.print("Resposta : [");
-            listaDoubleLinked.printForward();
-            System.out.println("]");
-        }
-        System.out.println("---------------------------------------------------------------------------");
-        */
     }
     
-
-
     public void executaDoubleLinkedList() {
         
-        String pasta="testePrincipal";
         long startTime, endTime, elapsedTime;
         int[] casos = {1, 10, 20, 50, 100, 200, 500, 2000};
         String casoPrefix = "caso";
@@ -151,7 +105,7 @@ public class App {
             String casoNumero = String.format("%04d", caso);
             String casoArquivo = casoPrefix + casoNumero + casoSuffix;
 
-            leituraSolution1(pasta, casoArquivo);
+            leituraSolution1("src", casoArquivo);
             startTime = System.currentTimeMillis();
             listaDoubleLinked.executar(dicionario);
             endTime = System.currentTimeMillis();
@@ -161,37 +115,6 @@ public class App {
             listaDoubleLinked.printForward();
             System.out.println("]");
         }
-
-        System.out.println("---------------------------------------------------------------------------");
-        System.out.println("                              Teste 2: ");
-
-        pasta = "testeOutros";
-        int[] outrosCasos = {10, 100, 1000, 10000, 100000, 30000000};
-        String[] outrosCasoArquivos = {"caso10.txt", "caso100.txt", "caso1000.txt", "caso10k.txt", "caso100k.txt", "caso30000k.txt"};
-
-        for (int i = 0; i < outrosCasos.length; i++) {
-            int caso = outrosCasos[i];
-            String casoArquivo = outrosCasoArquivos[i];
-        
-            leituraSolution1(pasta, casoArquivo);
-            startTime = System.currentTimeMillis();
-            listaDoubleLinked.executar(dicionario);
-            endTime = System.currentTimeMillis();
-            elapsedTime = endTime - startTime;
-            System.out.print(casoArquivo + " Tempo gasto: " + elapsedTime + " ms ");
-            System.out.print("Resposta : [");
-            listaDoubleLinked.printForward();
-            System.out.println("]");
-        }
-        System.out.println("---------------------------------------------------------------------------");
-
-
-
-
-
-
-
-
     }	
 
 }

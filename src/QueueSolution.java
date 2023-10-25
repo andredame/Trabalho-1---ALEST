@@ -1,12 +1,6 @@
-
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.LinkedList;
-
-
-
 public class QueueSolution {
     private Stack<String> pilha;
 
